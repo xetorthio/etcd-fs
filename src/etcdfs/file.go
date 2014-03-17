@@ -31,13 +31,6 @@ func (f *etcdFile) String() string {
   return "etcdFile"
 }
 
-/*
-func (f *etcdFile) Create(name string, flags uint32, mode uint32, context *fuse.Context) (file nodefs.File, child *nodefs.Inode, code fuse.Status) {
-  log.Println("******************************")
-  return nil, nil, fuse.ENOSYS
-}
-*/
-
 func (f *etcdFile) Read(buf []byte, off int64) (fuse.ReadResult, fuse.Status) {
   res, err := f.etcdClient.Get(f.path, false, false)
 

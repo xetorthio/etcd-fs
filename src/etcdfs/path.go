@@ -20,6 +20,21 @@ func (me *EtcdFs) NewEtcdClient() *etcd.Client {
   return etcd.NewClient([]string{me.EtcdEndpoint})
 }
 
+func (me *EtcdFs) Unlink(name string, context *fuse.Context) (code fuse.Status) {
+  if name == "" {
+    return fuse.OK
+  }
+
+  _, err := me.NewEtcdClient().Delete(name, false)
+
+  if err != nil {
+    log.Println(err)
+    return fuse.ENOENT
+  }
+
+  return fuse.OK
+}
+
 func (me *EtcdFs) Rmdir(name string, context *fuse.Context) (code fuse.Status) {
   if name == "" {
     return fuse.OK

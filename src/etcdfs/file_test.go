@@ -59,6 +59,21 @@ func TestNodeFs(t *testing.T) {
         }
       })
     })
+    g.Describe("Delete", func() {
+      g.It("Should be supported", func() {
+        etcd.Set("/test/barfoo", "lala", 0)
+
+        err := os.Remove(fs.Path() + "/test/barfoo")
+
+        if err != nil {
+          g.Fail(err)
+        }
+
+        if _, er := etcd.Get("/test/barfoo", false, false); er == nil {
+          g.Fail("The key [/test/barfoo] should not exist")
+        }
+      })
+    })
     g.Describe("Read", func() {
       g.It("Should be supported", func() {
         etcd.Set("/test/bar", "foo", 0)
