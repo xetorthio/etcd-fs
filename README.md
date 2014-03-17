@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/xetorthio/etcd-fs.png)](https://travis-ci.org/xetorthio/etcd-fs)
 etcd-fs
 =======
 
