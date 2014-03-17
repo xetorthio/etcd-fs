@@ -11,7 +11,7 @@ Why using etcd as a fileystem?
 
 Because filesystem API is super stable, widely known and supported, and very simple.
 
-Also because it seems like this can be useful for lots of companies out there that have already deployed apps that read some configuration file from local filesystem and would love to load these configuration files to something like etcd and ensure a consistent view of the configuration file.
+Also because it seems like this can be useful for lots of companies out there that have already deployed apps that read some configuration file from local filesystem and would love to load these configuration files to something like etcd and ensure a consistent view of across a cluster of nodes.
 
 How does it work?
 =================
