@@ -1,4 +1,6 @@
-install: apt-get install lxc-docker fuse
+before_install:
+ - sudo apt-get update -qq
+ - sudo apt-get install -qq lxc-docker fuse
 language: go
 go: 
  - 1.2
