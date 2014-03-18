@@ -6,5 +6,12 @@ test:
 	go get github.com/hanwen/go-fuse/fuse
 	go test -v etcdfs
 
+install:
+	sudo apt-get install -qq fuse
+	git clone https://github.com/coreos/etcd
+	cd etcd
+	./build
+	./bin/etcd &
+
 build:
 	go build etcdfs.go

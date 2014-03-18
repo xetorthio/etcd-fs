@@ -1,13 +1,8 @@
-before_install:
- - sudo apt-get install -qq fuse
- - git clone https://github.com/coreos/etcd
- - cd etcd
- - ./build
- - ./bin/etcd &
 language: go
-go: 
+go:
  - 1.2
  - release
  - tip
+install: make install
 script:
  - make test
