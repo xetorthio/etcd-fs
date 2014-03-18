@@ -8,6 +8,7 @@ test:
 
 install:
 	sudo apt-get install -qq fuse
+	sudo modprobe fuse
 	git clone https://github.com/coreos/etcd
 	cd etcd ; ./build ; ./bin/etcd &
 
