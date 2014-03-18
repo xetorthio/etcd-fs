@@ -1,3 +1,4 @@
+install: lxc-docker fuse
 language: go
 go: 
  - 1.2
