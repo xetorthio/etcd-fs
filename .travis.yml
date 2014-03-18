@@ -1,6 +1,9 @@
 before_install:
- - sudo apt-get update -qq
- - sudo apt-get install -qq lxc-docker fuse
+ - sudo apt-get install -qq fuse
+ - git clone https://github.com/coreos/etcd
+ - cd etcd
+ - ./build
+ - ./bin/etcd &
 language: go
 go: 
  - 1.2
