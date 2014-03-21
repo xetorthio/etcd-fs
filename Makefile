@@ -12,4 +12,4 @@ install:
 	sudo modprobe fuse
 
 build:
-	go build etcdfs.go
+	go build src/github.com/xetorthio/etcd-fs/mount/etcd-fs.go
