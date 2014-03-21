@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/hanwen/go-fuse/fuse/nodefs"
 	"github.com/hanwen/go-fuse/fuse/pathfs"
-	"github.com/xetorthio/etcd-fs/etcdfs"
+	"github.com/xetorthio/etcd-fs/fs"
 	"log"
 	"os"
 )
