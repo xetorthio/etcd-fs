@@ -1,4 +1,3 @@
-export GOPATH=$(shell pwd)
 
 test:
 	-docker run -d -p 8001:8001 -p 4001:4001 coreos/etcd -name etcd-node1
@@ -12,4 +11,5 @@ install:
 	sudo modprobe fuse
 
 build:
-	go build src/github.com/xetorthio/etcd-fs/mount/etcd-fs.go
+	go get github.com/xanpeng/etcd-fs/fs
+	go build src/github.com/xanpeng/etcd-fs/mount/etcd-fs.go
