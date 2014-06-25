@@ -1,3 +1,0 @@
-image: jpetazzo/dind
-script:
-  - docker --help
