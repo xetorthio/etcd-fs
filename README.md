@@ -25,16 +25,14 @@ When you mount the filesystem, it will mount the root directory of etcd.
 How do I install it?
 ====================
 
-Clone the project and build it.
-
 ```bash
-make build
+go get -u github.com/derlaft/etcd-fs
 ```
 
-This generates an executable file ```etcdfs```. You can mount etcd as a filesystem by running ```etcdfs MOUNT_PATH ETCD_ENDPOINT```. For example:
+This generates an executable file ```etcdfs``` in ```$GOPATH/bin/```. You can mount etcd as a filesystem by running ```etcdfs MOUNT_PATH ETCD_ENDPOINT```. For example:
 
 ```bash
-./etcds /tmp/foobar http://localhost:4001
+etcds /tmp/foobar http://localhost:4001
 ```
 
 Then you can access ```/tmp/foobar``` and use etcd as a filesystem.
@@ -44,6 +42,11 @@ To unmount it:
 ```bash
 fusermount -u /tmp/foobar
 ```
+
+To run tests:
+
+* Run a etcd node: ```docker run --rm -p 8001:8001 -p 4001:4001 quay.io/coreos/etcd:v2.3.0 -advertise-client-urls=http://0.0.0.0:4001 -listen-client-urls=http://0.0.0.0:4001```
+* Run tests: ```go test -v```
 
 What is supported?
 ==================
