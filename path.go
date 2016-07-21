@@ -189,3 +189,47 @@ func (me *EtcdFs) Open(name string, flags uint32, context *fuse.Context) (file n
 
 	return NewEtcdFile(me.kv(), name), fuse.OK
 }
+
+func (me *EtcdFs) Rename(oldName string, newName string, context *fuse.Context) (code fuse.Status) {
+
+	getRes, err := me.kv().Get(
+		ctx(),
+		oldName,
+		&etcd.GetOptions{},
+	)
+
+	if err != nil {
+		log.Println("Open Error:", err)
+		return fuse.ENOENT
+	}
+
+	_, err = me.kv().Set(
+		ctx(),
+		newName,
+		getRes.Node.Value,
+		&etcd.SetOptions{
+			Dir: false,
+		},
+	)
+
+	if err != nil {
+		log.Println("Open Error:", err)
+		return fuse.ENOENT
+	}
+
+	_, err = me.kv().Delete(
+		ctx(),
+		oldName,
+		&etcd.DeleteOptions{
+			Dir: false,
+		},
+	)
+
+	if err != nil {
+		log.Println("Open Error:", err)
+		return fuse.ENOENT
+	}
+
+	return fuse.OK
+
+}
