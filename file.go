@@ -71,7 +71,7 @@ func (f *etcdFile) Write(data []byte, off int64) (uint32, fuse.Status) {
 	end := int(off) + int(len(data))
 
 	var rightChunk []byte
-	if end > len(res.Node.Value) {
+	if end >= len(res.Node.Value) {
 		rightChunk = []byte{}
 	} else {
 		rightChunk = data[int(off)+int(len(data)):]
