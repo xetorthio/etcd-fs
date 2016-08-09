@@ -132,6 +132,36 @@ func (f *etcdFile) Utimens(atime *time.Time, mtime *time.Time) fuse.Status {
 }
 
 func (f *etcdFile) Truncate(size uint64) fuse.Status {
+	res, err := f.kv.Get(
+		ctx(),
+		f.path,
+		&etcd.GetOptions{},
+	)
+
+	if err != nil {
+		log.Println("Error:", err)
+		return fuse.EIO
+	}
+
+	if uint64(len(res.Node.Value)) < size {
+		log.Printf("Error: Truncating file with size %v to %v\n", len(res.Node.Value), size)
+		return fuse.EIO
+	}
+
+	_, err = f.kv.Set(
+		ctx(),
+		f.path,
+		res.Node.Value[:size],
+		&etcd.SetOptions{
+			PrevExist: etcd.PrevExist,
+		},
+	)
+
+	if err != nil {
+		log.Println("Error:", err)
+		return fuse.EIO
+	}
+
 	return fuse.OK
 }
 
