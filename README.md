@@ -31,7 +31,7 @@ Clone the project and build it.
 make build
 ```
 
-This generates an executable file ```etcdfs```. You can mount etcd as a filesystem by running ```etcdfs MOUNT_PATH ETCD_ENDPOINT```. For example:
+This generates an executable file ```etcdfs```. You can mount etcd as a filesystem by running ```etcdfs ETCD_ENDPOINT MOUNT_PATH```. For example:
 
 ```bash
 ./etcds /tmp/foobar http://localhost:4001
