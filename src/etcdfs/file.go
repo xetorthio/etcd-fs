@@ -125,3 +125,6 @@ func (f *etcdFile) Allocate(off uint64, size uint64, mode uint32) (code fuse.Sta
   return fuse.OK
 }
 
+func (f *etcdFile) Flock(flags int) fuse.Status {
+       return fuse.ENOSYS
+}
